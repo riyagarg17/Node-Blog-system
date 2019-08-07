@@ -1,0 +1,28 @@
+
+<h1 class="display-4 text-center">My Posts</h1>
+<div class="row">
+    {{#each story}}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header text-center mb-2">
+                {{truncate title 40}}
+
+            </div>
+            {{#if image}}
+            <img class="card-image rounded-circle  mx-auto" src="/images/{{image}}"></img>
+            {{else}}
+            <p class="lead text-center no-image">No Image</p>
+            {{/if}}
+                <p class="lead card-text text-center">Category: <strong>{{category}}</strong></p>
+                {{#if user}}
+                {{{editIcon user.id ../user.id id true}}}
+                <br>
+                {{/if}}
+            <a href="/stories/show/{{id}}" class="btn btn-light">
+                Read more</a>
+        </div>
+    </div>
+    {{else}}
+    <p>No stories found</p>
+    {{/each}}
+</div>

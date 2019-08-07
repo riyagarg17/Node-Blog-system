@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font awesome-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- external css-->
+    <link rel="stylesheet" href="/stylesheets/style.css" type='text/css'>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- ckeditor-->
+    <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+    <title>Bloggin</title>
+</head>
+
+<body>
+    {{> _navbar}}
+    {{#if user}}
+    <a href="/stories/add" class="float">
+        <i class="fa fa-plus fa-lg my-float"></i>
+    </a>
+    </div>
+
+    {{/if}}
+    <main>
+        <div class="container mb-5">
+            {{#if error}}
+            <div class="alert alert-danger"> <a href="#" class="close" data-dismiss="alert">&times;</a>
+                {{error}}
+            </div>
+            {{/if}}
+
+            {{#each errors}}
+            <div class="alert alert-danger"> <a href="#" class="close" data-dismiss="alert">&times;</a>
+                {{text}}</div>
+            {{/each}}
+
+            {{#if success_msg}}
+            <div class="alert alert-success"> <a href="#" class="close" data-dismiss="alert">&times;</a>
+                {{success_msg}}</div>
+            {{/if}}
+
+            {{#if error_msg}}
+            <div class="alert alert-danger"> <a href="#" class="close" data-dismiss="alert">&times; </a>
+                {{error_msg}} </div>
+            {{/if}}
+
+            {{{body}}}
+
+        </div>
+    </main>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

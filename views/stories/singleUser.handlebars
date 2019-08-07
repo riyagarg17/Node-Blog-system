@@ -1,0 +1,88 @@
+<div class="container text-center mb-4">
+
+    <div class="dropdown d-inline float-right">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false"><i class="fa fa-filter"></i>
+        Filter
+    </button>
+    <div class="dropdown-menu text-left " aria-labelledby="dropdownMenu2">
+        <form action="/stories/user/{{storyUser.id}}" method="POST">
+            <div class="form-check dropdown-item ml-3">
+                <input type="checkbox" class="form-check-input" value="Travel" name="category">
+                <label class="form-check-label" for="Travel">Travel</label>
+            </div>
+
+            <div class="form-check dropdown-item ml-3">
+                <input type="checkbox" class="form-check-input " value="Technology" name="category">
+                <label class="form-check-label" for="Technology">Technology</label>
+            </div>
+
+            <div class="form-check dropdown-item ml-3">
+                <input type="checkbox" class="form-check-input" value="Design" name="category">
+                <label class="form-check-label" for="Design">Design</label>
+            </div>
+
+            <div class="form-check dropdown-item ml-3">
+                <input type="checkbox" class="form-check-input" value="Culture" name="category">
+                <label class="form-check-label" for="Culture">Culture</label>
+            </div>
+
+            <div class="form-check dropdown-item ml-3">
+                <input type="checkbox" class="form-check-input" value="Business" name="category">
+                <label class="form-check-label" for="Business">Business</label>
+            </div>
+
+            <div class="form-check dropdown-item ml-3">
+                <input type="checkbox" class="form-check-input" value="Health" name="category">
+                <label class="form-check-label" for="Health">Health</label>
+            </div>
+            <hr>
+            <button class="btn btn-primary btn-block" type="submit">Apply Filter</button>
+        </form>
+    </div>
+</div>
+
+<h1 class=" d-inline">Posts By: {{storyUser.firstName}} {{storyUser.lastName}}</h1>
+</div>
+
+
+<div class="row">
+    {{#each story}}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header text-center mb-2">
+                {{truncate title 40}}
+            </div>
+            {{#if image}}
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-interval="2000">
+                <div class="carousel-inner">
+                    {{#each image}}
+                    {{#if @first}}
+                    <div class="carousel-item active">
+                        <img class="rounded mx-auto d-block card-image  " src="/images/{{this}}">
+                    </div>
+                    {{else}}
+                    <div class="carousel-item">
+                        <img class="d-block card-image rounded mx-auto" src="/images/{{this}}">
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+            <!--<img class="card-image rounded-circle  mx-auto" src="/images/{{image.[0]}}"></img>-->
+            {{else}}
+            <p class="lead text-center no-image">No Image</p>
+            {{/if}}
+            <p class="lead card-text text-center">Category: <strong>{{category}}</strong></p>
+            {{#if user}}
+            {{{editIcon user.id ../user.id id true}}}
+            <br>
+            {{/if}}
+            <a href="/stories/show/{{id}}" class="btn btn-light">
+                Read more</a>
+        </div>
+    </div>
+    {{else}}
+    <p>No stories found</p>
+    {{/each}}
+</div>

@@ -1,0 +1,8 @@
+<h1 class="text-right display-4 font-weight-bold">Welcome</h1>
+<p class="text-right lead font-weight-normal">Share your stories and thoughts with the world!</p>
+<br>
+{{#if user}}
+{{else}}
+<a class="btn btn-danger float-right" href="/auth/google">
+    <i class="fa fa-google left"> </i> Login with Google</a>
+{{/if}}

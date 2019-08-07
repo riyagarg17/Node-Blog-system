@@ -1,0 +1,78 @@
+<form method='post' action='/stories/edit/{{story.id}}?_method=PUT' enctype="multipart/form-data" id="editForm">
+  <input type="hidden" name="_method" value="PUT">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" name="title" value="{{story.title}}">
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select class="form-control" name="category">
+      {{#select story.category}}
+      <option value="Technology">Technology</option>
+      <option value="Science">Science</option>
+      <option value="Motivational">Motivational</option>
+      <option value="DIY">DIY</option>
+      <option value="Parenting">Parenting</option>
+      <option class="Celebrity Gossip">Celebrity Gossip</option>
+      {{/select}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="body">Body</label>
+    <textarea class="form-control" name="body">{{{story.body}}}</textarea>
+    <script type="text/javascript"> CKEDITOR.replace('body');</script>
+  </div>
+  <div class="form-group form-check">
+    <label for="removeImage"></label>
+    <input type="checkbox" class="form-check-input " name="removeImage" id="removeImage" onclick="myFunction()">
+    <span>Remove All Images</span>
+  </div>
+  <div class="row" id="imageRow">
+    {{#if story.image}}
+    {{#each story.image}}
+      <img src="/images/{{this}}" alt="" class="edit-image col-md-2 col-sm-4">
+    {{/each}}
+    {{else}}
+    <p>No image uploaded</p>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="image"></label>
+    <input type="file" class="form-control-file" name="image" id="mainImage" multiple onchange="readFile(this);">
+  </div>
+  <button class="btn btn-primary btn-block" type="submit">Save Changes</button>
+</form>
+
+<script>
+  function readFile(input) {
+    for (var i = 0; i < input.files.length; i++) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+         // var div = document.createElement("div");
+         // div.className = "row";
+          var img = document.createElement("img");
+          img.src = e.target.result;
+          img.width = "150";
+          img.height = "150";
+          img.className='edit-image col-md-2 col-sm-4'
+          //div.appendChild(img);
+          //document.getElementById('imageRow').appendChild(div);
+          document.getElementById('imageRow').appendChild(img);
+        };
+
+        reader.readAsDataURL(input.files[i]);
+      }
+    }
+  }
+  function myFunction() {
+    if (document.getElementById('removeImage').checked == true) {
+      document.getElementById('mainImage').disabled = true;
+    } else {
+      document.getElementById('mainImage').disabled = false;
+    }
+  }
+
+
+</script>
